@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Deploy containers
+      command: docker-compose up -d
+      args:
+        chdir: /vagrant
+      

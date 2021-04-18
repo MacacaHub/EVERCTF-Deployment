@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/buster64"
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
 
   config.vm.define "devbox" do |devbox|
     devbox.vm.provider "libvirt" do |libvirt|
@@ -23,7 +23,11 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.provision "ansible" do |ansible|
+  config.vm.provision "step1", type: "ansible" do |ansible|
     ansible.playbook = "playbooks/install-docker.yml"
+  end
+
+  config.vm.provision "step2", type: "ansible" do |ansible|
+    ansible.playbook = "playbooks/docker-compose-up.yml"
   end
 end

@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - install-docker-vars.yml
+  tasks:
+    - name: Test Connection
+      ping:
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: true
+      loop: "{{ requried_packages }}"
+    - name: Add docker's official GPG key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+    - name: Add docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/debian buster stable
+        state: present
+    - name: Update apt cache and install docker engine
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: true
+      loop: "{{ docker_engines }}"
+    - name: Verify docker installed
+      become: true
+      command: docker run --rm hello-world
+    - name: Check docker group is exists
+      group:
+        name: docker
+        state: present
+    - name: Add user to docker group
+      user:
+        name: "{{ user }}"
+        group: docker

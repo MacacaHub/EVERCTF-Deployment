@@ -22,4 +22,8 @@ Vagrant.configure("2") do |config|
       libvirt.memory = "8192"
     end
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbooks/install-docker.yml"
+  end
 end

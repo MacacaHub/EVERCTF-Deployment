@@ -1,0 +1,10 @@
+user: vagrant
+requried_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+docker_engines:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io

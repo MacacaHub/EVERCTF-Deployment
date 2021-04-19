@@ -8,6 +8,11 @@ Vagrant.configure("2") do |config|
       libvirt.cpus = "2"
       libvirt.memory = "2048"
     end
+
+    devbox.vm.provider "virtualbox" do |virtualbox|
+      virtualbox.cpus = "2"
+      virtualbox.memory = "2048"
+    end
   end
 
   config.vm.define "prodbox", autostart: false do |prodbox|
@@ -16,10 +21,16 @@ Vagrant.configure("2") do |config|
       bridge: "eno1",
       mode: "bridge",
       ip: "140.117.169.216"
+      
     prodbox.vm.provider "libvirt" do |libvirt|
       libvirt.driver = "kvm"
       libvirt.cpus = "4"
       libvirt.memory = "8192"
+    end
+
+    prodbox.vm.provider "virtualbox" do |virtualbox|
+      virtualbox.cpus = "4"
+      virtualbox.memory = "8192"
     end
   end
 

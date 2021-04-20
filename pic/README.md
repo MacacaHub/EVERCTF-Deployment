@@ -3,4 +3,4 @@
 ![ ](./everctf-architecture.png)
 
 ## System diagram
-![ ](./everctf_diagram.png)
+![ ](./everctf-diagram.png)

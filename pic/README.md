@@ -1,11 +1,11 @@
 
 ## System architecture
-![ ](./everctf-architecture.png)
+![ ](./architecture.png)
 
 ## Jenkins pipeline
-![ ](./everctf-jenkins_pipeline.png)
+![ ](./jenkins-pipeline.png)
 
 ## System diagram
-![ ](./everctf-workflow.png)
+![ ](./workflow.png)
 
 
